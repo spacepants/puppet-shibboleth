@@ -6,7 +6,7 @@
 class shibboleth::webapp {
 
   exec { 'build idm.war':
-    command => "${shibboleth::idp_home}/bin/install.sh",
+    command => "${shibboleth::idp_home}/bin/build.sh",
     # path => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
     environment => "JAVA_HOME=${shibboleth::java_home}",
     refreshonly => true,
