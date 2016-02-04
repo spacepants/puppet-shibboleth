@@ -1,0 +1,14 @@
+#!/bin/sh
+# MANAGED BY PUPPET
+set -e
+export ANT_OPTS=" \
+      -Didp.src.dir=/opt/staging/shibboleth-identity-provider-<%= @version %> \
+      -Didp.target.dir=<%= @idp_home %> \
+      -Didp.host.name=<%= @host_name %> \
+      -Didp.noprompt=yes \
+      -Didp.no.tidy=yes \
+      -Didp.keystore.password=<%= @keystore_pass %> \
+      -Didp.sealer.password=<%= @sealer_pass %> \
+      -Didp.merge.properties=/opt/staging/shibboleth-identity-provider-<%= @version %>/shibboleth.properties "
+export JAVA_HOME="<%= @java_home %>"
+sh /home/paulba/shibboleth-identity-provider-3.2.1/bin/install.sh
