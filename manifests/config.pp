@@ -63,4 +63,124 @@ class shibboleth::config {
     recurse => true,
     source  => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/intercept",
   }
+  file { "${shibboleth::idp_home}/conf/access-control.xml":
+    ensure => file,
+    source => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/access-control.xml",
+  }
+  file { "${shibboleth::idp_home}/conf/attribute-filter.xml":
+    ensure => file,
+    source => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/attribute-filter.xml",
+  }
+  file { "${shibboleth::idp_home}/conf/attribute-resolver.xml":
+    ensure => file,
+    source => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/attribute-resolver.xml",
+  }
+  file { "${shibboleth::idp_home}/conf/audit.xml":
+    ensure => file,
+    source => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/audit.xml",
+  }
+  file { "${shibboleth::idp_home}/conf/cas-protocol.xml":
+    ensure => file,
+    source => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/cas-protocol.xml",
+  }
+  file { "${shibboleth::idp_home}/conf/credentials.xml":
+    ensure => file,
+    source => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/credentials.xml",
+  }
+  file { "${shibboleth::idp_home}/conf/errors.xml":
+    ensure => file,
+    source => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/errors.xml",
+  }
+  file { "${shibboleth::idp_home}/conf/global.xml":
+    ensure => file,
+    source => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/global.xml",
+  }
+  file { "${shibboleth::idp_home}/conf/idp.properties":
+    ensure => file,
+    source => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/idp.properties",
+  }
+  file { "${shibboleth::idp_home}/conf/ldap.properties":
+    ensure => file,
+    source => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/ldap.properties",
+  }
+  file { "${shibboleth::idp_home}/conf/logback.xml":
+    ensure => file,
+    source => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/logback.xml",
+  }
+  file { "${shibboleth::idp_home}/conf/metadata-providers.xml":
+    ensure => file,
+    source => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/metadata-providers.xml",
+  }
+  file { "${shibboleth::idp_home}/conf/mvc-beans.xml":
+    ensure => file,
+    source => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/mvc-beans.xml",
+  }
+  file { "${shibboleth::idp_home}/conf/relying-party.xml":
+    ensure => file,
+    source => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/relying-party.xml",
+  }
+  file { "${shibboleth::idp_home}/conf/saml-nameid.properties":
+    ensure => file,
+    source => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/saml-nameid.properties",
+  }
+  file { "${shibboleth::idp_home}/conf/saml-nameid.xml":
+    ensure => file,
+    source => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/saml-nameid.xml",
+  }
+  file { "${shibboleth::idp_home}/conf/services.properties":
+    ensure => file,
+    source => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/services.properties",
+  }
+  file { "${shibboleth::idp_home}/conf/services.xml":
+    ensure => file,
+    source => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/services.xml",
+  }
+  file { "${shibboleth::idp_home}/conf/session-manager.xml":
+    ensure => file,
+    source => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/session-manager.xml",
+  }
+  file { "${shibboleth::idp_home}/bin/aacli.sh":
+    ensure => file,
+    mode   => '0755',
+  }
+  file { "${shibboleth::idp_home}/bin/ant.sh":
+    ensure => file,
+    mode   => '0755',
+  }
+  file { "${shibboleth::idp_home}/bin/build.sh":
+    ensure => file,
+    mode   => '0755',
+  }
+  file { "${shibboleth::idp_home}/bin/install.sh":
+    ensure => file,
+    mode   => '0755',
+  }
+  file { "${shibboleth::idp_home}/bin/keygen.sh":
+    ensure => file,
+    mode   => '0755',
+  }
+  file { "${shibboleth::idp_home}/bin/reload-metadata.sh":
+    ensure => file,
+    mode   => '0755',
+  }
+  file { "${shibboleth::idp_home}/bin/reload-service.sh":
+    ensure => file,
+    mode   => '0755',
+  }
+  file { "${shibboleth::idp_home}/bin/runclass.sh":
+    ensure => file,
+    mode   => '0755',
+  }
+  file { "${shibboleth::idp_home}/bin/seckeygen.sh":
+    ensure => file,
+    mode   => '0755',
+  }
+  file { "${shibboleth::idp_home}/bin/status.sh":
+    ensure => file,
+    mode   => '0755',
+  }
+  file { "${shibboleth::idp_home}/bin/version.sh":
+    ensure => file,
+    mode   => '0755',
+  }
 }
