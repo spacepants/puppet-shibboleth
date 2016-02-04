@@ -11,4 +11,4 @@ export ANT_OPTS=" \
       -Didp.sealer.password=<%= @sealer_pass %> \
       -Didp.merge.properties=/opt/staging/shibboleth-identity-provider-<%= @version %>/shibboleth.properties "
 export JAVA_HOME="<%= @java_home %>"
-sh /home/paulba/shibboleth-identity-provider-3.2.1/bin/install.sh
+sh /opt/staging/shibboleth-identity-provider-<%= @version %>/bin/install.sh
