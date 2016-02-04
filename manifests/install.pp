@@ -9,7 +9,7 @@ class shibboleth::install {
     staging_path => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}.tar.gz",
     creates => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}",
   }->
-  file { '/opt/staging/shibboleth-identity-provider-${shibboleth::version}/shib_install.sh':
+  file { "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/shib_install.sh":
     ensure  => file,
     mode    => '0400',
     content => template('shibboleth/shib_install.sh.erb'),
