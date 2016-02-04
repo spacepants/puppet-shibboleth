@@ -12,16 +12,22 @@ class shibboleth::install {
   file { "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/shibboleth.properties":
     ensure  => file,
     content => template('shibboleth/shibboleth.properties.erb'),
-    notify  => Exec['bootstrap idp home'],
-  }->
-  file { "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/shib_install.sh":
-    ensure  => file,
-    mode    => '0500',
-    content => template('shibboleth/shib_install.sh.erb'),
   }~>
   exec { 'bootstrap idp home':
     command => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/shib_install.sh",
     # path => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
+    environment => [
+      "ANT_OPTS=\"
+        -Didp.src.dir=/opt/staging/shibboleth-identity-provider-<%= @version %>
+        -Didp.target.dir=<%= @idp_home %>
+        -Didp.host.name=<%= @host_name %>
+        -Didp.noprompt=yes
+        -Didp.no.tidy=yes
+        -Didp.keystore.password=<%= @keystore_pass %>
+        -Didp.sealer.password=<%= @sealer_pass %>
+        -Didp.merge.properties=/opt/staging/shibboleth-identity-provider-<%= @version %>/shibboleth.properties \"",
+      "JAVA_HOME=${shibboleth::java_home}",
+    ],
     refreshonly => true,
   }
 }
