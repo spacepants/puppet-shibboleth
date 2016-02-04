@@ -27,6 +27,7 @@
             p:allowedRanges="#{ {'<% @access_ips.each_with_index do |this_ip, index| -%>
 <% if index == 0 -%>'<%= this_ip %>'
 <% else -%>, '<%= this_ip %>'
+<% end -%>
 <% end %>} }" />
         </entry>
 
