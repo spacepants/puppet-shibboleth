@@ -48,4 +48,19 @@ class shibboleth::config {
     mode    => '0644',
     source => $shibboleth::sealer_keyver_path,
   }
+  file { "${shibboleth::idp_home}/conf/authn":
+    ensure => directory,
+    recurse => true,
+    source  => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/authn",
+  }
+  file { "${shibboleth::idp_home}/conf/c14n":
+    ensure => directory,
+    recurse => true,
+    source  => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/c14n",
+  }
+  file { "${shibboleth::idp_home}/conf/intercept":
+    ensure => directory,
+    recurse => true,
+    source  => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/intercept",
+  }
 }
