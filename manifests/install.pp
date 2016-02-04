@@ -20,7 +20,7 @@ class shibboleth::install {
     content => template('shibboleth/shib_install.sh.erb'),
   }~>
   exec { 'bootstrap idp home':
-    command => "/bin/sh /opt/staging/shibboleth-identity-provider-${shibboleth::version}/shib_install.sh",
+    command => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/shib_install.sh",
     # path => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
     refreshonly => true,
   }
