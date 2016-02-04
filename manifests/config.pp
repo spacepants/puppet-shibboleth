@@ -65,7 +65,7 @@ class shibboleth::config {
   }
   file { "${shibboleth::idp_home}/conf/access-control.xml":
     ensure => file,
-    source => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/access-control.xml",
+    content => template('shibboleth/access-control.xml.erb'),
   }
   file { "${shibboleth::idp_home}/conf/attribute-filter.xml":
     ensure => file,

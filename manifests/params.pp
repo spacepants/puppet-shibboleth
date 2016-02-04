@@ -26,4 +26,5 @@ class shibboleth::params {
   $logo                 = "https://${::fqdn}/Path/To/Logo.png"
   $manage_ui_info       = false
   $saml2                = false
+  $access_ips           = ['127.0.0.1/32', '::1/128']
 }
