@@ -23,8 +23,3 @@ class shibboleth::install {
     refreshonly => true,
   }
 }
-exec { 'name':
-  command => '/bin/echo',
-  # path => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
-  # refreshonly => true,
-}
