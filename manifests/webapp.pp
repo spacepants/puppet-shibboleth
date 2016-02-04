@@ -6,7 +6,7 @@
 class shibboleth::webapp {
 
   exec { 'build idm.war':
-    command => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/bin/build.sh",
+    command => "${shibboleth::idp_home}/bin/install.sh",
     # path => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
     environment => "JAVA_HOME=${shibboleth::java_home}",
     refreshonly => true,
