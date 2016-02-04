@@ -5,7 +5,7 @@
 #
 class shibboleth::params {
   $version              = '3.2.1'
-  $download_url         = 'https://shibboleth.net/downloads/identity-provider/latest'
+  $download_url         = 'https://shibboleth.net/downloads/identity-provider'
   $java_home            = '/etc/alternatives/java_sdk'
   $idp_home             = '/opt/shibboleth-idp'
   $host_name            = $::fqdn
