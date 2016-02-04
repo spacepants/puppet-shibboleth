@@ -14,7 +14,7 @@ class shibboleth::install {
     content => template('shibboleth/shibboleth.properties.erb'),
   }~>
   exec { 'bootstrap idp home':
-    command => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/shib_install.sh",
+    command => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/bin/install.sh",
     # path => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
     environment => [
       "ANT_OPTS=\"
