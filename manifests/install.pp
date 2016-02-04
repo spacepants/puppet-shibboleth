@@ -16,7 +16,7 @@ class shibboleth::install {
   }->
   file { "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/shib_install.sh":
     ensure  => file,
-    mode    => '0400',
+    mode    => '0500',
     content => template('shibboleth/shib_install.sh.erb'),
   }~>
   exec { 'bootstrap idp home':
