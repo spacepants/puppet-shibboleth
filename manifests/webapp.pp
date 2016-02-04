@@ -6,14 +6,8 @@
 class shibboleth::webapp {
 
   exec { 'build idm.war':
-    command => '/bin/echo',
-    # path => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
-    # refreshonly => true,
-  }
-  exec { 'build idm.war':
     command => "/bin/sh /opt/staging/shibboleth-identity-provider-${shibboleth::version}/bin/build.sh",
     # path => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
     refreshonly => true,
   }
-
 }
