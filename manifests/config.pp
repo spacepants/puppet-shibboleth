@@ -27,6 +27,8 @@ class shibboleth::config {
     ensure  => file,
     mode    => '0600',
     source => $shibboleth::encryption_key_path,
+    owner   => $shibboleth::shibboleth_user,
+    group   => $shibboleth::shibboleth_group,
   }
   file { "${shibboleth::idp_home}/credentials/idp-signing.crt":
     ensure  => file,
@@ -37,6 +39,8 @@ class shibboleth::config {
     ensure  => file,
     mode    => '0600',
     source => $shibboleth::signing_key_path,
+    owner   => $shibboleth::shibboleth_user,
+    group   => $shibboleth::shibboleth_group,
   }
   file { "${shibboleth::idp_home}/credentials/sealer.jks":
     ensure  => file,
@@ -47,25 +51,35 @@ class shibboleth::config {
     ensure  => file,
     mode    => '0644',
     source => $shibboleth::sealer_keyver_path,
+    owner   => $shibboleth::shibboleth_user,
+    group   => $shibboleth::shibboleth_group,
   }
   file { "${shibboleth::idp_home}/conf/authn":
     ensure => directory,
     recurse => true,
     source  => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/authn",
+    owner   => $shibboleth::shibboleth_user,
+    group   => $shibboleth::shibboleth_group,
   }
   file { "${shibboleth::idp_home}/conf/c14n":
     ensure => directory,
     recurse => true,
     source  => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/c14n",
+    owner   => $shibboleth::shibboleth_user,
+    group   => $shibboleth::shibboleth_group,
   }
   file { "${shibboleth::idp_home}/conf/intercept":
     ensure => directory,
     recurse => true,
     source  => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/intercept",
+    owner   => $shibboleth::shibboleth_user,
+    group   => $shibboleth::shibboleth_group,
   }
   file { "${shibboleth::idp_home}/conf/access-control.xml":
     ensure => file,
     content => template('shibboleth/access-control.xml.erb'),
+    owner   => $shibboleth::shibboleth_user,
+    group   => $shibboleth::shibboleth_group,
   }
   file { "${shibboleth::idp_home}/conf/attribute-filter.xml":
     ensure => file,
@@ -98,6 +112,8 @@ class shibboleth::config {
   file { "${shibboleth::idp_home}/conf/idp.properties":
     ensure => file,
     content => template('shibboleth/idp.properties.erb'),
+    owner   => $shibboleth::shibboleth_user,
+    group   => $shibboleth::shibboleth_group,
   }
   file { "${shibboleth::idp_home}/conf/ldap.properties":
     ensure => file,

@@ -4,12 +4,14 @@
 # It sets variables according to platform.
 #
 class shibboleth::params {
+  $shibboleth_user      = 'tomcat'
+  $shibboleth_group     = 'tomcat'
   $version              = '3.2.1'
   $download_url         = 'https://shibboleth.net/downloads/identity-provider'
   $java_home            = '/etc/alternatives/java_sdk'
   $idp_home             = '/opt/shibboleth-idp'
   $host_name            = $::fqdn
-  $entity_id            = "https://${shibboleth::host_name}/idp/shibboleth"
+  $entity_id            = "https://${host_name}/idp/shibboleth"
   $scope                = $::domain
   $keystore_pass        = undef
   $sealer_pass          = undef

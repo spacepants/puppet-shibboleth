@@ -11,6 +11,8 @@
 #   e.g. "Specify one or more upstream ntp servers as an array."
 #
 class shibboleth (
+  $shibboleth_user      = $::shibboleth::params::shibboleth_user,
+  $shibboleth_group     = $::shibboleth::params::shibboleth_group,
   $version              = $::shibboleth::params::version,
   $download_url         = $::shibboleth::params::download_url,
   $java_home            = $::shibboleth::params::java_home,
