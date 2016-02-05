@@ -82,7 +82,7 @@
             <ds:KeyInfo>
                     <ds:X509Data>
                         <ds:X509Certificate>
-<%= @backchannel_cert %>
+<%= @backchannel_cert -%>
                         </ds:X509Certificate>
                     </ds:X509Data>
             </ds:KeyInfo>
@@ -92,7 +92,7 @@
             <ds:KeyInfo>
                     <ds:X509Data>
                         <ds:X509Certificate>
-<%= @signing_cert %>
+<%= @signing_cert -%>
                         </ds:X509Certificate>
                     </ds:X509Data>
             </ds:KeyInfo>
@@ -102,7 +102,7 @@
             <ds:KeyInfo>
                     <ds:X509Data>
                         <ds:X509Certificate>
-<%= @encryption_cert %>
+<%= @encryption_cert -%>
                         </ds:X509Certificate>
                     </ds:X509Data>
             </ds:KeyInfo>
