@@ -97,7 +97,7 @@ class shibboleth::config {
   }
   file { "${shibboleth::idp_home}/conf/idp.properties":
     ensure => file,
-    source => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/idp.properties",
+    content => template('shibboleth/idp.properties.erb'),
   }
   file { "${shibboleth::idp_home}/conf/ldap.properties":
     ensure => file,
