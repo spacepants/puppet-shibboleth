@@ -34,6 +34,7 @@ class shibboleth (
   $manage_ui_info       = $::shibboleth::params::manage_ui_info,
   $saml2                = $::shibboleth::params::saml2,
   $access_ips           = $::shibboleth::params::access_ips,
+  $data_connector       = $::shibboleth::params::data_connector,
 ) inherits ::shibboleth::params {
 
   # validate parameters here

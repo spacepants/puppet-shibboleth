@@ -9,7 +9,7 @@ class shibboleth::params {
   $java_home            = '/etc/alternatives/java_sdk'
   $idp_home             = '/opt/shibboleth-idp'
   $host_name            = $::fqdn
-  $entity_id            = "https://${host_name}/idp/shibboleth"
+  $entity_id            = "https://${shibboleth::host_name}/idp/shibboleth"
   $scope                = $::domain
   $keystore_pass        = undef
   $sealer_pass          = undef
@@ -27,4 +27,5 @@ class shibboleth::params {
   $manage_ui_info       = false
   $saml2                = false
   $access_ips           = ['127.0.0.1/32', '::1/128']
+  $data_connector       = 'static'
 }
