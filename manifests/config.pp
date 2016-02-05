@@ -11,7 +11,7 @@ class shibboleth::config {
   file { "${shibboleth::idp_home}/credentials/idp-backchannel.crt":
     ensure  => file,
     mode    => '0644',
-    source  => $shibboleth::backchannel_cert_path,
+    content => template('shibboleth/backchannel-cert.erb'),
   }
   file { "${shibboleth::idp_home}/credentials/idp-backchannel.p12":
     ensure  => file,
@@ -21,7 +21,7 @@ class shibboleth::config {
   file { "${shibboleth::idp_home}/credentials/idp-encryption.crt":
     ensure  => file,
     mode    => '0644',
-    source  => $shibboleth::encryption_cert_path,
+    content => template('shibboleth/encryption-cert.erb'),
   }
   file { "${shibboleth::idp_home}/credentials/idp-encryption.key":
     ensure  => file,
@@ -33,7 +33,7 @@ class shibboleth::config {
   file { "${shibboleth::idp_home}/credentials/idp-signing.crt":
     ensure  => file,
     mode    => '0644',
-    source  => $shibboleth::signing_cert_path,
+    content => template('shibboleth/signing-cert.erb'),
   }
   file { "${shibboleth::idp_home}/credentials/idp-signing.key":
     ensure  => file,
