@@ -182,7 +182,9 @@ class shibboleth::config {
   }
   file { "${shibboleth::idp_home}/conf/relying-party.xml":
     ensure => file,
-    source => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/relying-party.xml",
+    content => template('shibboleth/relying-party.xml.erb'),
+    owner   => $shibboleth::shibboleth_user,
+    group   => $shibboleth::shibboleth_group,
   }
   file { "${shibboleth::idp_home}/conf/saml-nameid.properties":
     ensure => file,
