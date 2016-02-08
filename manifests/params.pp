@@ -33,6 +33,7 @@ class shibboleth::params {
   $saml2                 = true
   $single_logout         = false
   $access_ips            = ['127.0.0.1/32', '::1/128']
+  $cas                   = false
   $data_connector        = 'ldap'
   $ldap_url              = 'ldap://localhost:10389'
   $ldap_starttls         = 'true'

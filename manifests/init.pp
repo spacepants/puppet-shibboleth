@@ -50,6 +50,7 @@ class shibboleth (
   $ldap_user_filter      = $::shibboleth::params::ldap_user_filter,
   $ldap_search_filter    = $::shibboleth::params::ldap_search_filter,
   $ldap_attributes       = $::shibboleth::params::ldap_attributes,
+  $cas                   = $::shibboleth::params::cas,
 ) inherits ::shibboleth::params {
 
   # validate parameters here
