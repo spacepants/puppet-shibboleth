@@ -54,6 +54,13 @@ class shibboleth::config {
     owner   => $shibboleth::shibboleth_user,
     group   => $shibboleth::shibboleth_group,
   }
+  if $shibboleth::ldap_cert_path {
+    file { "${shibboleth::idp_home}/credentials/ldap-server.crt":
+      ensure => file,
+      mode   => '0644',
+      source => $shibboleth::ldap_cert_path,
+    }
+  }
   file { "${shibboleth::idp_home}/conf/authn":
     ensure => directory,
     recurse => true,
@@ -81,13 +88,37 @@ class shibboleth::config {
     owner   => $shibboleth::shibboleth_user,
     group   => $shibboleth::shibboleth_group,
   }
-  file { "${shibboleth::idp_home}/conf/attribute-filter.xml":
-    ensure => file,
-    source => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/attribute-filter.xml",
+  concat { 'attribute filter':
+    ensure => present,
+    path   => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/attribute-filter.xml",
+    owner  => $shibboleth::shibboleth_user,
+    group  => $shibboleth::shibboleth_group,
   }
-  file { "${shibboleth::idp_home}/conf/attribute-resolver.xml":
-    ensure => file,
-    source => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/attribute-resolver.xml",
+  concat::fragment { 'attribute filter header':
+    target  => 'attribute filter',
+    content => template('shibboleth/filter-header.erb'),
+    order   => '0',
+  }
+  concat::fragment { 'attribute filter footer':
+    target  => 'attribute filter',
+    content => "</AttributeFilterPolicyGroup>\n",
+    order   => '999',
+  }
+  concat { 'attribute resolver':
+    ensure => present,
+    path   => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/attribute-resolver.xml",
+    owner  => $shibboleth::shibboleth_user,
+    group  => $shibboleth::shibboleth_group,
+  }
+  concat::fragment { 'attribute resolver header':
+    target  => 'attribute resolver',
+    content => template('shibboleth/resolver-header.erb'),
+    order   => '0',
+  }
+  concat::fragment { 'attribute resolver footer':
+    target  => 'attribute resolver',
+    content => template('shibboleth/resolver-footer.erb'),
+    order   => '999',
   }
   file { "${shibboleth::idp_home}/conf/audit.xml":
     ensure => file,
@@ -96,6 +127,22 @@ class shibboleth::config {
   file { "${shibboleth::idp_home}/conf/cas-protocol.xml":
     ensure => file,
     source => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/cas-protocol.xml",
+  }
+  concat { 'cas protocol':
+    ensure => present,
+    path   => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/cas-protocol.xml",
+    owner  => $shibboleth::shibboleth_user,
+    group  => $shibboleth::shibboleth_group,
+  }
+  concat::fragment { 'cas protocol header':
+    target  => 'cas protocol',
+    content => template('shibboleth/cas-header.erb'),
+    order   => '0',
+  }
+  concat::fragment { 'cas protocol footer':
+    target  => 'cas protocol',
+    content => template('shibboleth/cas-footer.erb'),
+    order   => '999',
   }
   file { "${shibboleth::idp_home}/conf/credentials.xml":
     ensure => file,
@@ -117,7 +164,9 @@ class shibboleth::config {
   }
   file { "${shibboleth::idp_home}/conf/ldap.properties":
     ensure => file,
-    source => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/ldap.properties",
+    content => template('shibboleth/ldap.properties.erb'),
+    owner   => $shibboleth::shibboleth_user,
+    group   => $shibboleth::shibboleth_group,
   }
   file { "${shibboleth::idp_home}/conf/logback.xml":
     ensure => file,
@@ -198,5 +247,63 @@ class shibboleth::config {
   file { "${shibboleth::idp_home}/bin/version.sh":
     ensure => file,
     mode   => '0755',
+  }
+  shibboleth::attribute { 'uid':
+    attribute_type => 'ad:Simple',
+    dependency     => 'myLDAP',
+    saml1_type     => 'SAML1String',
+    saml1_name     => 'urn:mace:dir:attribute-def:uid',
+    saml2_type     => 'SAML2String',
+    saml2_name     => 'urn:oid:0.9.2342.19200300.100.1.1',
+  }
+  shibboleth::attribute { 'eduPersonPrincipalName':
+    attribute_type => 'ad:Scoped',
+    scope          => '%{idp.scope}',
+    source_id      => 'uid',
+    dependency     => 'uid',
+    saml1_type     => 'SAML1ScopedString',
+    saml1_name     => 'urn:mace:dir:attribute-def:eduPersonPrincipalName',
+    saml2_type     => 'SAML2ScopedString',
+    saml2_name     => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.6',
+  }
+  shibboleth::attribute { 'mail':
+    attribute_type => 'ad:Simple',
+    dependency     => 'myLDAP',
+    saml1_type     => 'SAML1String',
+    saml1_name     => 'urn:mace:dir:attribute-def:mail',
+    saml2_type     => 'SAML2String',
+    saml2_name     => 'urn:oid:0.9.2342.19200300.100.1.3',
+  }
+  shibboleth::attribute { 'givenName':
+    attribute_type => 'ad:Simple',
+    dependency     => 'myLDAP',
+    saml1_type     => 'SAML1String',
+    saml1_name     => 'urn:mace:dir:attribute-def:givenName',
+    saml2_type     => 'SAML2String',
+    saml2_name     => 'urn:oid:2.5.4.42',
+  }
+  shibboleth::attribute { 'sn':
+    attribute_type => 'ad:Simple',
+    dependency     => 'myLDAP',
+    saml1_type     => 'SAML1String',
+    saml1_name     => 'urn:mace:dir:attribute-def:sn',
+    saml2_type     => 'SAML2String',
+    saml2_name     => 'urn:oid:2.5.4.4',
+  }
+  shibboleth::attribute { 'displayName':
+    attribute_type => 'ad:Simple',
+    dependency     => 'myLDAP',
+    saml1_type     => 'SAML1String',
+    saml1_name     => 'urn:mace:dir:attribute-def:displayName',
+    saml2_type     => 'SAML2String',
+    saml2_name     => 'urn:oid:2.16.840.1.113730.3.1.241',
+  }
+  shibboleth::attribute { 'employeeNumber':
+    attribute_type => 'ad:Simple',
+    dependency     => 'myLDAP',
+    saml1_type     => 'SAML1String',
+    saml1_name     => 'urn:mace:dir:attribute-def:employeeNumber',
+    saml2_type     => 'SAML2String',
+    saml2_name     => 'urn:oid:2.16.840.1.113730.3.1.3',
   }
 }

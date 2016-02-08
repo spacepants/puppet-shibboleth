@@ -1,0 +1,5 @@
+    <resolver:AttributeDefinition id="<%= @name %>" xsi:type="<%= @attribute_type %>"<% if @scope %> scope="<%= @scope %>"<% end %> sourceAttributeID="<%= @source_id %>">
+        <resolver:Dependency ref="<%= @dependency %>" />
+        <resolver:AttributeEncoder xsi:type="enc:<%= @saml1_type %>" name="<%= @saml1_name %>" encodeType="<%= @saml1_encode_type %>" />
+        <resolver:AttributeEncoder xsi:type="enc:<%= @saml2_type %>" name="<%= @saml2_name %>" friendlyName="<%= @friendly_name %>" encodeType="<%= @saml2_encode_type %>" />
+    </resolver:AttributeDefinition>

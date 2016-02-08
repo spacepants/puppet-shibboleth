@@ -1,0 +1,18 @@
+    <AttributeFilterPolicy id="<%= @name %>">
+<% if @requesters.length > 1 -%>
+        <PolicyRequirementRule xsi:type="OR">
+<% @requesters.each do |this_requester| -%>
+            <Rule xsi:type="Requester" value="<%= this_requester %>" />
+<% end -%>
+        </PolicyRequirementRule>
+<% else -%>
+        <PolicyRequirementRule xsi:type="Requester" value="<%= @requesters %>" />
+<% end -%>
+
+<% @attributes.each do |this_attribute| -%>
+        <AttributeRule attributeID="<%= this_attribute %>">
+            <PermitValueRule xsi:type="ANY" />
+        </AttributeRule>
+
+<% end -%>
+    </AttributeFilterPolicy>

@@ -30,7 +30,17 @@ class shibboleth::params {
   $description           = "Enter a description of your IdP at ${::fqdn}"
   $logo                  = "https://${::fqdn}/Path/To/Logo.png"
   $manage_ui_info        = false
-  $saml2                 = false
+  $saml2                 = true
+  $single_logout         = false
   $access_ips            = ['127.0.0.1/32', '::1/128']
-  $data_connector        = 'static'
+  $data_connector        = 'ldap'
+  $ldap_url              = 'ldap://localhost:10389'
+  $ldap_starttls         = 'true'
+  $ldap_ssl              = 'false'
+  $ldap_cert_path        = undef
+  $ldap_timeout          = '3000'
+  $ldap_basedn           = 'ou=people,dc=example,dc=org'
+  $ldap_user_filter      = '(uid={user})'
+  $ldap_search_filter    = '(uid=$resolutionContext.principal)'
+  $ldap_attributes       = 'cn,homephone,mail'
 }

@@ -37,9 +37,19 @@ class shibboleth (
   $description           = $::shibboleth::params::description,
   $logo                  = $::shibboleth::params::logo,
   $manage_ui_info        = $::shibboleth::params::manage_ui_info,
+  $single_logout         = $::shibboleth::params::single_logout,
   $saml2                 = $::shibboleth::params::saml2,
   $access_ips            = $::shibboleth::params::access_ips,
   $data_connector        = $::shibboleth::params::data_connector,
+  $ldap_url              = $::shibboleth::params::ldap_url,
+  $ldap_starttls         = $::shibboleth::params::ldap_starttls,
+  $ldap_ssl              = $::shibboleth::params::ldap_ssl,
+  $ldap_cert_path        = $::shibboleth::params::ldap_cert_path,
+  $ldap_timeout          = $::shibboleth::params::ldap_timeout,
+  $ldap_basedn           = $::shibboleth::params::ldap_basedn,
+  $ldap_user_filter      = $::shibboleth::params::ldap_user_filter,
+  $ldap_search_filter    = $::shibboleth::params::ldap_search_filter,
+  $ldap_attributes       = $::shibboleth::params::ldap_attributes,
 ) inherits ::shibboleth::params {
 
   # validate parameters here
