@@ -16,11 +16,12 @@
 define shibboleth::cas_service (
   $regex = undef,
   $proxy = 'false',
-  $single_logout = 'false'
+  $single_logout = 'false',
+  $service_order = '1',
 ) {
   concat::fragment { "${name} cas service":
     target  => 'cas protocol',
     content => template('shibboleth/cas-service.erb'),
-    order   => '1',
+    order   => $service_order,
   }
 }
