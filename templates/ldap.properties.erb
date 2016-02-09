@@ -6,9 +6,9 @@
 
 ## Connection properties ##
 idp.authn.LDAP.ldapURL                          = <%= @ldap_url %>
-#idp.authn.LDAP.useStartTLS                     = <%= @ldap_starttls %>
-#idp.authn.LDAP.useSSL                          = <%= @ldap_ssl %>
-#idp.authn.LDAP.connectTimeout                  = <%= @ldap_timeout %>
+idp.authn.LDAP.useStartTLS                      = <%= @ldap_starttls %>
+idp.authn.LDAP.useSSL                           = <%= @ldap_ssl %>
+idp.authn.LDAP.connectTimeout                   = <%= @ldap_timeout %>
 
 ## SSL configuration, either jvmTrust, certificateTrust, or keyStoreTrust
 #idp.authn.LDAP.sslConfig                       = certificateTrust
@@ -30,8 +30,8 @@ idp.authn.LDAP.baseDN                           = <%= @ldap_basedn %>
 idp.authn.LDAP.userFilter                       = <%= @ldap_user_filter %>
 # bind search configuration
 # for AD: idp.authn.LDAP.bindDN=adminuser@domain.com
-idp.authn.LDAP.bindDN                           = uid=myservice,ou=system
-idp.authn.LDAP.bindDNCredential                 = myServicePassword
+idp.authn.LDAP.bindDN                           = <%= @ldap_binddn %>
+idp.authn.LDAP.bindDNCredential                 = <%= @ldap_bind_password %>
 
 # Format DN resolution, used by directAuthenticator, adAuthenticator
 # for AD use idp.authn.LDAP.dnFormat=%s@domain.com
