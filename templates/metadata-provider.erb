@@ -1,0 +1,16 @@
+    <MetadataProvider id="<%= @name %>"
+                      xsi:type="FileBackedHTTPMetadataProvider"
+                      xmlns="urn:mace:shibboleth:2.0:metadata"
+                      metadataURL="<%= @metadata_url %>/<%= @metadata_file %>"
+                      backingFile="%{idp.home}/metadata/<%= @metadata_file %>"
+                      minRefreshDelay="<%= @min_refresh %>"
+                      maxRefreshDelay="<%= @max_refresh %>"
+                      refreshDelayFactor="<%= @refresh_delay %>">
+
+        <MetadataFilter xsi:type="SignatureValidation" requireSignedRoot="true"
+                        certificateFile="%{idp.home}/credentials/<%= @cert_file %>" />
+        <MetadataFilter xsi:type="RequiredValidUntil" maxValidityInterval="<%= @valid_until %>"/>
+        <MetadataFilter xsi:type="EntityRoleWhiteList">
+            <RetainedRole>md:SPSSODescriptor</RetainedRole>
+        </MetadataFilter>
+    </MetadataProvider>

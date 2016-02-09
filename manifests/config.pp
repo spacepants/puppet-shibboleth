@@ -172,9 +172,21 @@ class shibboleth::config {
     ensure => file,
     source => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/logback.xml",
   }
-  file { "${shibboleth::idp_home}/conf/metadata-providers.xml":
-    ensure => file,
-    source => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/metadata-providers.xml",
+  concat { 'metadata providers':
+    ensure => present,
+    path   => "${shibboleth::idp_home}/conf/metadata-providers.xml",
+    owner  => $shibboleth::shibboleth_user,
+    group  => $shibboleth::shibboleth_group,
+  }
+  concat::fragment { 'metadata providers header':
+    target  => 'metadata providers',
+    content => template('shibboleth/metadata-providers-header.erb'),
+    order   => '0',
+  }
+  concat::fragment { 'metadata providers footer':
+    target  => 'metadata providers',
+    content => "</MetadataProvider>\n",
+    order   => '999',
   }
   file { "${shibboleth::idp_home}/conf/mvc-beans.xml":
     ensure => file,
