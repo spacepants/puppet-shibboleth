@@ -90,7 +90,7 @@ class shibboleth::config {
   }
   concat { 'attribute filter':
     ensure => present,
-    path   => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/attribute-filter.xml",
+    path   => "${shibboleth::idp_home}/conf/attribute-filter.xml",
     owner  => $shibboleth::shibboleth_user,
     group  => $shibboleth::shibboleth_group,
   }
@@ -106,7 +106,7 @@ class shibboleth::config {
   }
   concat { 'attribute resolver':
     ensure => present,
-    path   => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/attribute-resolver.xml",
+    path   => "${shibboleth::idp_home}/conf/attribute-resolver.xml",
     owner  => $shibboleth::shibboleth_user,
     group  => $shibboleth::shibboleth_group,
   }
@@ -130,7 +130,7 @@ class shibboleth::config {
   }
   concat { 'cas protocol':
     ensure => present,
-    path   => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/cas-protocol.xml",
+    path   => "${shibboleth::idp_home}/conf/cas-protocol.xml",
     owner  => $shibboleth::shibboleth_user,
     group  => $shibboleth::shibboleth_group,
   }
