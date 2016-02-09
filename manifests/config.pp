@@ -124,10 +124,6 @@ class shibboleth::config {
     ensure => file,
     source => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/audit.xml",
   }
-  file { "${shibboleth::idp_home}/conf/cas-protocol.xml":
-    ensure => file,
-    source => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/cas-protocol.xml",
-  }
   concat { 'cas protocol':
     ensure => present,
     path   => "${shibboleth::idp_home}/conf/cas-protocol.xml",
