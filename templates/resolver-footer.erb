@@ -6,8 +6,10 @@
     <resolver:DataConnector id="myLDAP" xsi:type="dc:LDAPDirectory"
         ldapURL="%{idp.attribute.resolver.LDAP.ldapURL}"
         baseDN="%{idp.attribute.resolver.LDAP.baseDN}"
+<% if @ldap_bind -%>
         principal="%{idp.attribute.resolver.LDAP.bindDN}"
         principalCredential="%{idp.attribute.resolver.LDAP.bindDNCredential}"
+<% end -%>
         useStartTLS="%{idp.attribute.resolver.LDAP.useStartTLS:true}">
         <dc:FilterTemplate>
             <![CDATA[

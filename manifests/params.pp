@@ -35,7 +35,7 @@ class shibboleth::params {
   $access_ips            = ['127.0.0.1/32', '::1/128']
   $cas                   = false
   $data_connector        = 'ldap'
-  $ldap_bind             = false
+  $ldap_bind             = undef
   $ldap_binddn           = 'uid=myservice,ou=system'
   $ldap_bind_password    = 'myServicePassword'
   $ldap_url              = 'ldap://localhost:10389'
