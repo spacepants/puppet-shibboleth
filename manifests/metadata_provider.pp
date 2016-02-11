@@ -28,6 +28,7 @@ define shibboleth::metadata_provider (
     command => "curl -o ${shibboleth::idp_home}/credentials/${cert_file} ${cert_url}/${cert_file}",
     path    => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
     creates => "${shibboleth::idp_home}/credentials/${cert_file}",
+    require => Exec['bootstrap idp home'],
   }->
   file { "${shibboleth::idp_home}/credentials/${cert_file}":
     ensure => file,
@@ -38,6 +39,7 @@ define shibboleth::metadata_provider (
     command => "curl -o ${shibboleth::idp_home}/metadata/${metadata_file} ${metadata_url}/${metadata_url}",
     path    => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
     creates => "${shibboleth::idp_home}/metadata/${metadata_file}",
+    require => Exec['bootstrap idp home'],
   }->
   file { "${shibboleth::idp_home}/metadata/${metadata_file}":
     ensure => file,
