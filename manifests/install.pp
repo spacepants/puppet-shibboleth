@@ -17,7 +17,7 @@ class shibboleth::install {
     command => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/bin/install.sh",
     # path => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
     environment => [
-      "ANT_OPTS=-Didp.src.dir=/opt/staging/shibboleth-identity-provider-${shibboleth::version} -Didp.target.dir=${shibboleth::idp_home} -Didp.host.name=${shibboleth::host_name} -Didp.noprompt=yes -Didp.no.tidy=yes -Didp.keystore.password=${shibboleth::keystore_pass} -Didp.sealer.password=${shibboleth::sealer_pass} -Didp.merge.properties=/opt/staging/shibboleth-identity-provider-${shibboleth::version}/shibboleth.properties",
+      "ANT_OPTS=-Didp.src.dir=/opt/staging/shibboleth-identity-provider-${shibboleth::version} -Didp.target.dir=${shibboleth::idp_home} -Didp.host.name=${shibboleth::host_name} -Didp.noprompt=yes -Didp.no.tidy=yes -Didp.keystore.password=${shibboleth::keystore_pass} -Didp.sealer.password=${shibboleth::sealer_pass} -Didp.merge.properties=/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/shibboleth.properties",
       "JAVA_HOME=${shibboleth::java_home}",
     ],
     refreshonly => true,
