@@ -8,20 +8,18 @@ class shibboleth::config {
     mode    => '0644',
     content => template('shibboleth/idp-metadata.xml.erb'),
   }
-  file { "${shibboleth::idp_home}/credentials/idp-backchannel.crt":
-    ensure  => file,
-    mode    => '0644',
-    content => template('shibboleth/backchannel-cert.erb'),
+  shibboleth::certificate { 'backchannel':
+    certificate => $shibboleth::backchannel_cert,
+    path => "${shibboleth::idp_home}/credentials/idp-backchannel.crt",
   }
   file { "${shibboleth::idp_home}/credentials/idp-backchannel.p12":
     ensure  => file,
     mode    => '0644',
     source => $shibboleth::backchannel_key_path,
   }
-  file { "${shibboleth::idp_home}/credentials/idp-encryption.crt":
-    ensure  => file,
-    mode    => '0644',
-    content => template('shibboleth/encryption-cert.erb'),
+  shibboleth::certificate { 'encryption':
+    certificate => $shibboleth::encryption_cert,
+    path => "${shibboleth::idp_home}/credentials/idp-encryption.crt",
   }
   file { "${shibboleth::idp_home}/credentials/idp-encryption.key":
     ensure  => file,
@@ -30,10 +28,9 @@ class shibboleth::config {
     owner   => $shibboleth::user,
     group   => $shibboleth::group,
   }
-  file { "${shibboleth::idp_home}/credentials/idp-signing.crt":
-    ensure  => file,
-    mode    => '0644',
-    content => template('shibboleth/signing-cert.erb'),
+  shibboleth::certificate { 'signing':
+    certificate => $shibboleth::signing_cert,
+    path => "${shibboleth::idp_home}/credentials/idp-signing.crt",
   }
   file { "${shibboleth::idp_home}/credentials/idp-signing.key":
     ensure  => file,
@@ -54,11 +51,10 @@ class shibboleth::config {
     owner   => $shibboleth::user,
     group   => $shibboleth::group,
   }
-  if $shibboleth::ldap_cert_path {
-    file { "${shibboleth::idp_home}/credentials/ldap-server.crt":
-      ensure => file,
-      mode   => '0644',
-      source => $shibboleth::ldap_cert_path,
+  if $shibboleth::ldap_cert {
+    shibboleth::certificate { 'ldap':
+      certificate => $shibboleth::ldap_cert,
+      path => "${shibboleth::idp_home}/credentials/ldap-server.crt",
     }
   }
   file { "${shibboleth::idp_home}/conf/authn":
