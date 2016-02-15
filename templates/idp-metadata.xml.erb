@@ -5,13 +5,11 @@
 
         <Extensions>
             <shibmd:Scope regexp="false"><%= @scope %></shibmd:Scope>
-<% if @manage_ui_info -%>
             <mdui:UIInfo>
                 <mdui:DisplayName xml:lang="en"><%= @display_name %></mdui:DisplayName>
                 <mdui:Description xml:lang="en"><%= @description %></mdui:Description>
                 <mdui:Logo height="80" width="80"><%= @logo %></mdui:Logo>
             </mdui:UIInfo>
-<% end -%>
         </Extensions>
 
         <KeyDescriptor use="signing">
