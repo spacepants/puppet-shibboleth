@@ -11,8 +11,14 @@ class shibboleth::install {
   }->
   file { "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/shibboleth.properties":
     ensure  => file,
-    content => template('shibboleth/shibboleth.properties.erb'),
-  }~>
+  }
+  $defaults = {
+    'path' => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/shibboleth.properties",
+    'key_val_separator' => '=',
+    'require' => File["/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/shibboleth.properties"],
+    'notify' => Exec['bootstrap idp home'],
+  }
+  create_ini_settings({ '' => $::shibboleth::install_properties }, $defaults)
   exec { 'bootstrap idp home':
     command => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/bin/install.sh",
     # path => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',

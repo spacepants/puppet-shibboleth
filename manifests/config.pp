@@ -27,8 +27,8 @@ class shibboleth::config {
     ensure  => file,
     mode    => '0600',
     source => $shibboleth::encryption_key_path,
-    owner   => $shibboleth::shibboleth_user,
-    group   => $shibboleth::shibboleth_group,
+    owner   => $shibboleth::user,
+    group   => $shibboleth::group,
   }
   file { "${shibboleth::idp_home}/credentials/idp-signing.crt":
     ensure  => file,
@@ -39,8 +39,8 @@ class shibboleth::config {
     ensure  => file,
     mode    => '0600',
     source => $shibboleth::signing_key_path,
-    owner   => $shibboleth::shibboleth_user,
-    group   => $shibboleth::shibboleth_group,
+    owner   => $shibboleth::user,
+    group   => $shibboleth::group,
   }
   file { "${shibboleth::idp_home}/credentials/sealer.jks":
     ensure  => file,
@@ -51,8 +51,8 @@ class shibboleth::config {
     ensure  => file,
     mode    => '0644',
     source => $shibboleth::sealer_keyver_path,
-    owner   => $shibboleth::shibboleth_user,
-    group   => $shibboleth::shibboleth_group,
+    owner   => $shibboleth::user,
+    group   => $shibboleth::group,
   }
   if $shibboleth::ldap_cert_path {
     file { "${shibboleth::idp_home}/credentials/ldap-server.crt":
@@ -65,34 +65,34 @@ class shibboleth::config {
     ensure => directory,
     recurse => true,
     source  => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/authn",
-    owner   => $shibboleth::shibboleth_user,
-    group   => $shibboleth::shibboleth_group,
+    owner   => $shibboleth::user,
+    group   => $shibboleth::group,
   }
   file { "${shibboleth::idp_home}/conf/c14n":
     ensure => directory,
     recurse => true,
     source  => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/c14n",
-    owner   => $shibboleth::shibboleth_user,
-    group   => $shibboleth::shibboleth_group,
+    owner   => $shibboleth::user,
+    group   => $shibboleth::group,
   }
   file { "${shibboleth::idp_home}/conf/intercept":
     ensure => directory,
     recurse => true,
     source  => "/opt/staging/shibboleth-identity-provider-${shibboleth::version}/conf/intercept",
-    owner   => $shibboleth::shibboleth_user,
-    group   => $shibboleth::shibboleth_group,
+    owner   => $shibboleth::user,
+    group   => $shibboleth::group,
   }
   file { "${shibboleth::idp_home}/conf/access-control.xml":
     ensure => file,
     content => template('shibboleth/access-control.xml.erb'),
-    owner   => $shibboleth::shibboleth_user,
-    group   => $shibboleth::shibboleth_group,
+    owner   => $shibboleth::user,
+    group   => $shibboleth::group,
   }
   concat { 'attribute filter':
     ensure => present,
     path   => "${shibboleth::idp_home}/conf/attribute-filter.xml",
-    owner  => $shibboleth::shibboleth_user,
-    group  => $shibboleth::shibboleth_group,
+    owner  => $shibboleth::user,
+    group  => $shibboleth::group,
   }
   concat::fragment { 'attribute filter header':
     target  => 'attribute filter',
@@ -107,8 +107,8 @@ class shibboleth::config {
   concat { 'attribute resolver':
     ensure => present,
     path   => "${shibboleth::idp_home}/conf/attribute-resolver.xml",
-    owner  => $shibboleth::shibboleth_user,
-    group  => $shibboleth::shibboleth_group,
+    owner  => $shibboleth::user,
+    group  => $shibboleth::group,
   }
   concat::fragment { 'attribute resolver header':
     target  => 'attribute resolver',
@@ -127,8 +127,8 @@ class shibboleth::config {
   concat { 'cas protocol':
     ensure => present,
     path   => "${shibboleth::idp_home}/conf/cas-protocol.xml",
-    owner  => $shibboleth::shibboleth_user,
-    group  => $shibboleth::shibboleth_group,
+    owner  => $shibboleth::user,
+    group  => $shibboleth::group,
   }
   concat::fragment { 'cas protocol header':
     target  => 'cas protocol',
@@ -155,14 +155,14 @@ class shibboleth::config {
   file { "${shibboleth::idp_home}/conf/idp.properties":
     ensure => file,
     content => template('shibboleth/idp.properties.erb'),
-    owner   => $shibboleth::shibboleth_user,
-    group   => $shibboleth::shibboleth_group,
+    owner   => $shibboleth::user,
+    group   => $shibboleth::group,
   }
   file { "${shibboleth::idp_home}/conf/ldap.properties":
     ensure => file,
     content => template('shibboleth/ldap.properties.erb'),
-    owner   => $shibboleth::shibboleth_user,
-    group   => $shibboleth::shibboleth_group,
+    owner   => $shibboleth::user,
+    group   => $shibboleth::group,
   }
   file { "${shibboleth::idp_home}/conf/logback.xml":
     ensure => file,
@@ -171,8 +171,8 @@ class shibboleth::config {
   concat { 'metadata providers':
     ensure => present,
     path   => "${shibboleth::idp_home}/conf/metadata-providers.xml",
-    owner  => $shibboleth::shibboleth_user,
-    group  => $shibboleth::shibboleth_group,
+    owner  => $shibboleth::user,
+    group  => $shibboleth::group,
   }
   concat::fragment { 'metadata providers header':
     target  => 'metadata providers',
@@ -191,8 +191,8 @@ class shibboleth::config {
   file { "${shibboleth::idp_home}/conf/relying-party.xml":
     ensure => file,
     content => template('shibboleth/relying-party.xml.erb'),
-    owner   => $shibboleth::shibboleth_user,
-    group   => $shibboleth::shibboleth_group,
+    owner   => $shibboleth::user,
+    group   => $shibboleth::group,
   }
   file { "${shibboleth::idp_home}/conf/saml-nameid.properties":
     ensure => file,

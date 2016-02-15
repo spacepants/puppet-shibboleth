@@ -32,8 +32,8 @@ define shibboleth::metadata_provider (
   }->
   file { "${shibboleth::idp_home}/credentials/${cert_file}":
     ensure => file,
-    owner  => "${shibboleth::shibboleth_user}",
-    group  => "${shibboleth::shibboleth_group}"
+    owner  => "${shibboleth::user}",
+    group  => "${shibboleth::group}"
   }
   exec { "download ${name} file":
     command => "curl -o ${shibboleth::idp_home}/metadata/${metadata_file} ${metadata_url}/${metadata_url}",
@@ -43,8 +43,8 @@ define shibboleth::metadata_provider (
   }->
   file { "${shibboleth::idp_home}/metadata/${metadata_file}":
     ensure => file,
-    owner  => "${shibboleth::shibboleth_user}",
-    group  => "${shibboleth::shibboleth_group}"
+    owner  => "${shibboleth::user}",
+    group  => "${shibboleth::group}"
   }
   concat::fragment { "${name} metadata provider":
     target  => 'metadata providers',
