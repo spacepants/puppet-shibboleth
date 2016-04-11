@@ -254,4 +254,9 @@ class shibboleth::config {
     ensure => file,
     mode   => '0755',
   }
+  file { "${shibboleth::idp_home}/logs":
+    ensure => directory,
+    owner   => $shibboleth::user,
+    group   => $shibboleth::group,
+  }
 }
