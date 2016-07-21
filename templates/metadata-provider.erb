@@ -1,15 +1,15 @@
-    <MetadataProvider id="<%= @name %>"
+    <MetadataProvider id="<%= scope['shibboleth::metadata_provider::title'] %>"
                       xsi:type="FileBackedHTTPMetadataProvider"
                       xmlns="urn:mace:shibboleth:2.0:metadata"
-                      metadataURL="<%= @metadata_url %>/<%= @metadata_file %>"
-                      backingFile="%{idp.home}/metadata/<%= @metadata_file %>"
-                      minRefreshDelay="<%= @min_refresh %>"
-                      maxRefreshDelay="<%= @max_refresh %>"
-                      refreshDelayFactor="<%= @refresh_delay %>">
+                      metadataURL="<%= scope['shibboleth::metadata_provider::metadata_url'] %>/<%= scope['shibboleth::metadata_provider::metadata_file'] %>"
+                      backingFile="%{idp.home}/metadata/<%= scope['shibboleth::metadata_provider::metadata_file'] %>"
+                      minRefreshDelay="<%= scope['shibboleth::metadata_provider::min_refresh'] %>"
+                      maxRefreshDelay="<%= scope['shibboleth::metadata_provider::max_refresh'] %>"
+                      refreshDelayFactor="<%= scope['shibboleth::metadata_provider::efresh_delay'] %>">
 
         <MetadataFilter xsi:type="SignatureValidation" requireSignedRoot="true"
-                        certificateFile="%{idp.home}/credentials/<%= @cert_file %>" />
-        <MetadataFilter xsi:type="RequiredValidUntil" maxValidityInterval="<%= @valid_until %>"/>
+                        certificateFile="%{idp.home}/credentials/<%= scope['shibboleth::metadata_provider::cert_file'] %>" />
+        <MetadataFilter xsi:type="RequiredValidUntil" maxValidityInterval="<%= scope['shibboleth::metadata_provider::valid_until'] %>"/>
         <MetadataFilter xsi:type="EntityRoleWhiteList">
             <RetainedRole>md:SPSSODescriptor</RetainedRole>
         </MetadataFilter>

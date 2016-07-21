@@ -1,5 +1,5 @@
               <bean class="net.shibboleth.idp.cas.service.ServiceDefinition"
-                    c:regex="<%= @regex %>"
-                    p:group="<%= @name %>"
-                    p:authorizedToProxy="<%= @proxy %>"
-                    p:singleLogoutParticipant="<%= @single_logout %>" />
+                    c:regex="<%= scope['shibboleth::cas_service::regex'] %>"
+                    p:group="<%= scope['shibboleth::cas_service::title'] %>"
+                    p:authorizedToProxy="<%= scope['shibboleth::cas_service::proxy'] %>"
+                    p:singleLogoutParticipant="<%= scope['shibboleth::cas_service::single_logout'] %>" />

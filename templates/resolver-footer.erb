@@ -2,11 +2,11 @@
     <!--      Data Connectors                       -->
     <!-- ========================================== -->
 
-<% if @data_connector == 'ldap' -%>
+<% if scope['shibboleth::data_connector'] == 'ldap' -%>
     <resolver:DataConnector id="myLDAP" xsi:type="dc:LDAPDirectory"
         ldapURL="%{idp.attribute.resolver.LDAP.ldapURL}"
         baseDN="%{idp.attribute.resolver.LDAP.baseDN}"
-<% if @ldap_bind -%>
+<% if scope['shibboleth::ldap_bind'] -%>
         principal="%{idp.attribute.resolver.LDAP.bindDN}"
         principalCredential="%{idp.attribute.resolver.LDAP.bindDNCredential}"
 <% end -%>

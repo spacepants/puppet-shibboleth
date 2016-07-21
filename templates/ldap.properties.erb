@@ -5,10 +5,10 @@
 #idp.authn.LDAP.authenticator                   = anonSearchAuthenticator
 
 ## Connection properties ##
-idp.authn.LDAP.ldapURL                          = <%= @ldap_url %>
-idp.authn.LDAP.useStartTLS                      = <%= @ldap_starttls %>
-idp.authn.LDAP.useSSL                           = <%= @ldap_ssl %>
-idp.authn.LDAP.connectTimeout                   = <%= @ldap_timeout %>
+idp.authn.LDAP.ldapURL                          = <%= scope['shibboleth::ldap_url'] %>
+idp.authn.LDAP.useStartTLS                      = <%= scope['shibboleth::ldap_starttls'] %>
+idp.authn.LDAP.useSSL                           = <%= scope['shibboleth::ldap_ssl %>']
+idp.authn.LDAP.connectTimeout                   = <%= scope['shibboleth::ldap_timeout'] %>
 
 ## SSL configuration, either jvmTrust, certificateTrust, or keyStoreTrust
 #idp.authn.LDAP.sslConfig                       = certificateTrust
@@ -25,13 +25,13 @@ idp.authn.LDAP.returnAttributes                 = passwordExpirationTime,loginGr
 
 # Search DN resolution, used by anonSearchAuthenticator, bindSearchAuthenticator
 # for AD: CN=Users,DC=example,DC=org
-idp.authn.LDAP.baseDN                           = <%= @ldap_basedn %>
+idp.authn.LDAP.baseDN                           = <%= scope['shibboleth::ldap_basedn'] %>
 #idp.authn.LDAP.subtreeSearch                   = false
-idp.authn.LDAP.userFilter                       = <%= @ldap_user_filter %>
+idp.authn.LDAP.userFilter                       = <%= scope['shibboleth::ldap_user_filter'] %>
 # bind search configuration
 # for AD: idp.authn.LDAP.bindDN=adminuser@domain.com
-idp.authn.LDAP.bindDN                           = <%= @ldap_binddn %>
-idp.authn.LDAP.bindDNCredential                 = <%= @ldap_bind_password %>
+idp.authn.LDAP.bindDN                           = <%= scope['shibboleth::ldap_binddn'] %>
+idp.authn.LDAP.bindDNCredential                 = <%= scope['shibboleth::ldap_bind_password'] %>
 
 # Format DN resolution, used by directAuthenticator, adAuthenticator
 # for AD use idp.authn.LDAP.dnFormat=%s@domain.com
@@ -45,8 +45,8 @@ idp.attribute.resolver.LDAP.bindDN              = %{idp.authn.LDAP.bindDN:undefi
 idp.attribute.resolver.LDAP.bindDNCredential    = %{idp.authn.LDAP.bindDNCredential:undefined}
 idp.attribute.resolver.LDAP.useStartTLS         = %{idp.authn.LDAP.useStartTLS:true}
 idp.attribute.resolver.LDAP.trustCertificates   = %{idp.authn.LDAP.trustCertificates:undefined}
-idp.attribute.resolver.LDAP.searchFilter        = <%= @ldap_search_filter %>
-idp.attribute.resolver.LDAP.returnAttributes    = <%= @ldap_attributes %>
+idp.attribute.resolver.LDAP.searchFilter        = <%= scope['shibboleth::ldap_search_filter'] %>
+idp.attribute.resolver.LDAP.returnAttributes    = <%= scope['shibboleth::ldap_attributes'] %>
 
 # LDAP pool configuration, used for both authn and DN resolution
 #idp.pool.LDAP.minSize                          = 3

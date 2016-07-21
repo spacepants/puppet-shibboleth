@@ -3,10 +3,10 @@
 idp.additionalProperties = /conf/ldap.properties, /conf/saml-nameid.properties, /conf/services.properties
 
 # Set the entityID of the IdP
-idp.entityID = <%= @entity_id %>
+idp.entityID = <%= scope['shibboleth::entity_id'] %>
 
 # Set the scope used in the attribute resolver for scoped attributes
-idp.scope = <%= @scope %>
+idp.scope = <%= scope['shibboleth::scope'] %>
 
 # General cookie properties (maxAge only applies to persistent cookies)
 #idp.cookie.secure = false
@@ -27,8 +27,8 @@ idp.scope = <%= @scope %>
 #idp.sealer.aliasBase = secret
 idp.sealer.storeResource = %{idp.home}/credentials/sealer.jks
 idp.sealer.versionResource = %{idp.home}/credentials/sealer.kver
-idp.sealer.storePassword = <%= @sealer_pass %>
-idp.sealer.keyPassword = <%= @sealer_pass %>
+idp.sealer.storePassword = <%= scope['shibboleth::sealer_pass'] %>
+idp.sealer.keyPassword = <%= scope['shibboleth::sealer_pass'] %>
 
 # Settings for public/private signing and encryption key(s)
 # During decryption key rollover, point the ".2" properties at a second
