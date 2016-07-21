@@ -7,7 +7,7 @@
 ## Connection properties ##
 idp.authn.LDAP.ldapURL                          = <%= scope['shibboleth::ldap_url'] %>
 idp.authn.LDAP.useStartTLS                      = <%= scope['shibboleth::ldap_starttls'] %>
-idp.authn.LDAP.useSSL                           = <%= scope['shibboleth::ldap_ssl %>']
+idp.authn.LDAP.useSSL                           = <%= scope['shibboleth::ldap_ssl'] %>
 idp.authn.LDAP.connectTimeout                   = <%= scope['shibboleth::ldap_timeout'] %>
 
 ## SSL configuration, either jvmTrust, certificateTrust, or keyStoreTrust
