@@ -1,5 +1,5 @@
-    <resolver:AttributeDefinition id="<%= scope['shibboleth::attribute::title'] %>" xsi:type="<%= scope['shibboleth::attribute::attribute_type'] %>"<% if scope['shibboleth::attribute::scope'] %> scope="<%= scope['shibboleth::attribute::scope'] %>"<% end %> sourceAttributeID="<%= scope['shibboleth::attribute::source_id'] %>">
-        <resolver:Dependency ref="<%= scope['shibboleth::attribute::dependency'] %>" />
-        <resolver:AttributeEncoder xsi:type="enc:<%= scope['shibboleth::attribute::saml1_type'] %>" name="<%= scope['shibboleth::attribute::saml1_name'] %>" encodeType="<%= scope['shibboleth::attribute::saml1_encode_type'] %>" />
-        <resolver:AttributeEncoder xsi:type="enc:<%= scope['shibboleth::attribute::saml2_type'] %>" name="<%= scope['shibboleth::attribute::saml2_name'] %>" friendlyName="<%= scope['shibboleth::attribute::friendly_name'] %>" encodeType="<%= scope['shibboleth::attribute::saml2_encode_type'] %>" />
+    <resolver:AttributeDefinition id="<%= scope['title'] %>" xsi:type="<%= scope['attribute_type'] %>"<% if scope['scope'] %> scope="<%= scope['scope'] %>"<% end %> sourceAttributeID="<%= scope['source_id'] %>">
+        <resolver:Dependency ref="<%= scope['dependency'] %>" />
+        <resolver:AttributeEncoder xsi:type="enc:<%= scope['saml1_type'] %>" name="<%= scope['saml1_name'] %>" encodeType="<%= scope['saml1_encode_type'] %>" />
+        <resolver:AttributeEncoder xsi:type="enc:<%= scope['saml2_type'] %>" name="<%= scope['saml2_name'] %>" friendlyName="<%= scope['friendly_name'] %>" encodeType="<%= scope['saml2_encode_type'] %>" />
     </resolver:AttributeDefinition>

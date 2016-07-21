@@ -1,15 +1,15 @@
     <AttributeFilterPolicy id="<%= @name %>">
-<% if scope['shibboleth::filter::requesters'].length > 1 -%>
+<% if scope['requesters'].length > 1 -%>
         <PolicyRequirementRule xsi:type="OR">
-<% scope['shibboleth::filter::requesters'].each do |this_requester| -%>
+<% scope['requesters'].each do |this_requester| -%>
             <Rule xsi:type="Requester" value="<%= this_requester %>" />
 <% end -%>
         </PolicyRequirementRule>
 <% else -%>
-        <PolicyRequirementRule xsi:type="Requester" value="<%= scope['shibboleth::filter::requesters'] %>" />
+        <PolicyRequirementRule xsi:type="Requester" value="<%= scope['requesters'] %>" />
 <% end -%>
 
-<% scope['shibboleth::filter::attributes'].each do |this_attribute| -%>
+<% scope['attributes'].each do |this_attribute| -%>
         <AttributeRule attributeID="<%= this_attribute %>">
             <PermitValueRule xsi:type="ANY" />
         </AttributeRule>
